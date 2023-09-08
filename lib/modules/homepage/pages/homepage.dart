@@ -5,6 +5,8 @@ import 'package:flutter_bloc_practice/bloc/internet_bloc/internet_state.dart';
 import 'package:flutter_bloc_practice/services/utils/colors/app_colors.dart';
 import 'package:flutter_bloc_practice/services/utils/text/app_text.dart';
 
+import '../../../services/utils/route_name.dart';
+
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
@@ -13,6 +15,25 @@ class MyHomePage extends StatelessWidget {
     double padding =  MediaQuery.of(context).viewPadding.top;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SelectableText(
+              "Goto Cubit",
+              onTap: (){
+                Navigator.pushNamed(context, RouteName.homePageCubit);
+              },
+            ),
+            SelectableText(
+              "Goto Form Validate",
+              onTap: (){
+                Navigator.pushNamed(context, RouteName.validateFormPage);
+              },
+            ),
+          ],
+        ),
+      ),
       body: Container(
         width: width,
         padding: EdgeInsets.only(top: padding),
