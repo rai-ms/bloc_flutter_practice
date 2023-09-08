@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_practice/bloc/internet_bloc/internet_bloc.dart';
 import 'package:flutter_bloc_practice/bloc/internet_bloc/internet_state.dart';
+import 'package:flutter_bloc_practice/services/utils/colors/app_colors.dart';
+import 'package:flutter_bloc_practice/services/utils/text/app_text.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -14,9 +16,9 @@ class MyHomePage extends StatelessWidget {
       body: Container(
         width: width,
         padding: EdgeInsets.only(top: padding),
-        decoration:const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.greenAccent, Colors.red, Colors.greenAccent,Colors.blue,Colors.greenAccent],
+            colors: AppColors.gradientBackground,
             begin: Alignment.topLeft,
             end: Alignment.bottomRight
           )
@@ -26,26 +28,26 @@ class MyHomePage extends StatelessWidget {
             {
               if(state is InternetGainedState){
                 ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(backgroundColor: Colors.green, content: Center(child: Text("Connected",)))
+                    SnackBar(backgroundColor: AppColors.greenColor, content: const Center(child: Text(AppText.connected,)))
                 );
               }
               else if(state is InternetLostState){
                 ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(backgroundColor: Colors.green, content: Center(child: Text("Not Connected",)))
+                    SnackBar(backgroundColor: AppColors.greenColor, content: const Center(child: Text(AppText.notConnected,)))
                 );
               }
               else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(backgroundColor: Colors.green, content: Center(child: Text("Connecting ..",)))
+                    SnackBar(backgroundColor: AppColors.greenColor, content: const Center(child: Text(AppText.connecting,)))
                 );
               }
             },
           builder: (context,state)
           {
-            String sta = "";
-            if(state is InternetGainedState){ sta = "Connected"; }
-            else if(state is InternetLostState){ sta = "Not Connected"; }
-            else { sta = "Connecting .."; }
+            String sta = AppText.empty;
+            if(state is InternetGainedState){ sta = AppText.connected; }
+            else if(state is InternetLostState){ sta = AppText.notConnected; }
+            else { sta = AppText.connecting; }
             return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
