@@ -81,15 +81,14 @@ class _ValidateFormBlocState extends State<ValidateFormBloc> {
 
               BlocBuilder<ValidateBloc, ValidateState>(builder: (context,state){
                 if(state is ErrorValidateState){
-                  return const Text("Error Occured");
+                  return const Text(AppText.errorOccured);
                 }
                 else if(state is InValidValidateState){
-                  return const Text("Invalid Data");
+                  return const Text(AppText.invalidData);
                 }
-                else if(state is ValidateState){
-                  return const Text("Login Success");
+               else {
+                  return const Text(AppText.loginSuccess);
                 }
-                return Container();
               })
             ],
           ),
